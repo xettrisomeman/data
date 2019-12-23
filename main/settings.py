@@ -10,12 +10,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET
+SECRET_KEY = SECRET if SECRET else os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG" ,default=1))
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['localhost' , '127.0.0.1']
 
 
 # Application definition
@@ -69,16 +70,17 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':'herokudjango',
-        'USER':os.environ.get('DB_USER'),
-        'PASSWORD':os.environ.get('DB_PASS'),
-        'HOST':'localhost',
+        'ENGINE':os.environ.get('ENGINE','django.db.backends.postgresql_psycopg2'),
+        'NAME':os.environ.get('DB' , 'herokudjango'),
+        'USER':os.environ.get('DB_USER' , 'project'),
+        'PASSWORD':os.environ.get('DB_PASS' ,'project'),
+        'HOST':os.environ.get('HOST' , 'localhost'),
         'PORT':5432 
     }
 }
 
-
+django_prod = dj_database_url.config()
+DATABASES['default'].update(django_prod)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

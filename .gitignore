@@ -5,7 +5,6 @@ __pycache__/
 file.py
 # C extensions
 *.so
-django.env
 # Distribution / packaging
 .Python
 build/

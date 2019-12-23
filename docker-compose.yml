@@ -1,0 +1,27 @@
+version: '3.7'
+
+services: 
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        ports: 
+            - 8000:8000
+        volumes: 
+            - .:/code
+        env_file: 
+            - ./django.env
+        depends_on: 
+            - db
+
+    db:
+        image: postgres:12.0-alpine
+        environment: 
+            - POSTGRES_USER=project
+            - POSTGRES_PASS=project
+            - POSTGRES_DB=project_db
+        volumes: 
+            - postgres_data:/var/libs/postgres/data/
+
+
+volumes: 
+    postgres_data:
