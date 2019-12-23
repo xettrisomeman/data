@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HomePage</title>
+</head>
+<body>
+
+ {% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<h1>Welcome to the homepage</h1>
+    <p>This is your home</p>
+    {% if user.is_authenticated %}
+    <p>Hello {{user}}</p>
+    <a href="{% url 'logout' %}">LogOut</a>
+    <br>
+    <a href="{% url 'postlist' %}">See Posts</a>
+    {% else %}
+    <a href="{% url 'login' %}">LogIn</a>
+    <br>
+    <a href="{% url 'signup' %}">SignUp</a>
+    {% endif %}
+</body>
+</html>

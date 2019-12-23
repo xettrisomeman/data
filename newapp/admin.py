@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 
 from .forms import (CustomUserAddForm , CustomUserChangeForm)
-from .models import CustomUser
+from .models import CustomUser  ,Post
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserAddForm
     form = CustomUserChangeForm
@@ -35,3 +35,4 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser , CustomUserAdmin)    
+admin.site.register(Post)
