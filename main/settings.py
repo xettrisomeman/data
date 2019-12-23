@@ -15,7 +15,7 @@ SECRET_KEY='dt$(di((x6b@r27b-y-t_hogs6ktk719s@9%4x#3ee#d$g!k*w'
 DEBUG = int(os.environ.get("DEBUG" ,default=1))
 
 
-ALLOWED_HOSTS = ['localhost' , '127.0.0.1']
+ALLOWED_HOSTS = ['localhost' , '127.0.0.1','meronewapp.herokuapp.com']
 
 
 # Application definition
