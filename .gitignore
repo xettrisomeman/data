@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+file.py
 # C extensions
 *.so
 django.env
